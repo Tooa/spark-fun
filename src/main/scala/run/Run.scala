@@ -15,7 +15,17 @@ object Run {
     val inputFile = args(0)
     val outputFile = args(1)
     // Create a Scala Spark Context.
-    val conf = new SparkConf().setAppName("wordCount")
+    val path = "/home/toa/Documents/spark-fun/jars/"
+    val conf = new SparkConf().setAppName("wordCount").setJars(Seq(
+      path + "epic_2.10-0.3.jar",
+      path + "epic-ner-en-conll_2.10-2015.1.25.jar",
+      path + "nak_2.10-1.3.jar",
+      path + "scala-logging-api_2.10-2.1.2.jar",
+      path + "scala-logging-slf4j_2.10-2.1.2.jar",
+      path + "breeze_2.10-0.11-M0.jar",
+      path + "spark-assembly-1.5.2-hadoop2.6.0.jar",
+      path + "spark-fun-assembly-1.0.jar"
+    ))
     val sc = new SparkContext(conf)
 
     sc.addFile("model.ser.gz")
